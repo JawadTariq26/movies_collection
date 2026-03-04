@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Add Movie{% endblock %}
+
+{% block content %}
+    {% if not movies %}
+        <div class="content">
+            <h1 class="heading">Add a Movie</h1>
+            {{ render_form(form,novalidate=True) }}
+        </div>
+    {% else %}
+        <h1>Movies</h1>
+        <br>
+        {% for movie in movies.get('results') %}
+            <div class="content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Overview</th>
+                        <th scope="col">Popularity</th>
+                        <th scope="col">Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ movie.get("title") }}</td>
+                            <td>{{ movie.get("overview") }}</td>
+                            <td>{{ movie.get("popularity") }}</td>
+                            <td>{{ movie.get("vote_count") }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

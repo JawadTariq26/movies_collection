@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Movie{% endblock %}
+
+{% block content %}
+  {% if not movies.get("results")%}
+    <div class="container">
+    <h1 class="heading">No Movies Too Show, Try Different Movies Title</h1>
+    </div>
+  {% else%}
+<div class="container">
+    <h1 class="heading">Select Movie</h1>
+    {%for movie in movies.get('results')%}
+  <p>
+    <a href="{{url_for('Find_Movie', id = movie.get('id'))}}"> {{movie.get('title')}} - {{movie.get('release_date')}}</a>
+  </p>
+    {% endfor %}
+</div>
+  {% endif%}
+{% endblock %}
